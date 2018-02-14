@@ -1,0 +1,15 @@
+{
+	"_comment": "All config files is not hot reload, please restart server after save configuration file.",
+
+	"LogName": "/logs/authen.log",
+	"LogMaxSizeBeforeArchiveInMB": 50,
+	"LogMaxAgeBeforeDeleteInDays": 366,
+	"LogUseLocalTime": true,
+	"LogCompress": true,
+
+	"ApplicationPort": "10100",
+
+	"Salting": "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+	"PrivateKey": "1234567890ABCDEFGHIJKLMN",
+	"IvKey": "12345678"
+}

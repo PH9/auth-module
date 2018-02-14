@@ -1,0 +1,20 @@
+version: '3'
+services:
+     mrtrauth:
+         image: wasith/auth-module:golang
+         hostname: authserver
+         restart: always
+         volumes:
+            - ./logs/:/logs/
+            - ./conf/:/conf/
+         ports:
+            - 8080:8080 # API
+            - 6060:6060 # net/http/pprof
+         environment:
+            - APP_ENVIRONMENT=DEVELOPMENT
+            - APP_NET_HTTP_PPROF=true
+            - APP_DISABLE_DB_SSL=true
+
+            - SET_CONTAINER_TIMEZONE=true
+            - CONTAINER_TIMEZONE=Asia/Bangkok
+            - TZ=Asia/Bangkok
