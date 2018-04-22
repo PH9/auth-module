@@ -18,7 +18,7 @@ func authenticated(w http.ResponseWriter, r *http.Request) {
 		panic(http.StatusUnauthorized)
 	}
 
-	fmt.Fprint(w, "{\"status\":\"success\"}")
+	fmt.Fprint(w, `{"status":"success"}`)
 }
 
 func isFoundTokenInDB(token string) bool {
