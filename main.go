@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -92,7 +93,10 @@ func setupLogger() {
 	})
 }
 
+var db *sql.DB
+
 func setupDatabase() {
+	fmt.Println("[I] Setting up database")
 	config := configInstance()
 
 	sslDisable := ""
@@ -104,6 +108,18 @@ func setupDatabase() {
 		config.Database.DatabaseUsername, config.Database.DatabasePassword,
 		config.Database.DatabaseHost, config.Database.DatabasePort,
 		config.Database.DatabaseName, sslDisable)
+
+	var err error
+	db, err = sql.Open("postgres", dataSourceName)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := db.Ping(); err != nil {
+		panic(err)
+	}
+
+	db.SetMaxIdleConns(5)
 }
 
 func setupTeminator() {
